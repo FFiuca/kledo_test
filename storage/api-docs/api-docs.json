@@ -169,7 +169,7 @@
         "/api/approval-stages/{id}": {
             "put": {
                 "tags": [
-                    "Approver Form"
+                    "Approval Stage Form"
                 ],
                 "summary": "Update an approver stage",
                 "description": "Updates an approver stage using the specified ID",

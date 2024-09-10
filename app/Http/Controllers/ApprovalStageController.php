@@ -113,7 +113,7 @@ class ApprovalStageController extends Controller
     /**
      * @OA\Put(
      *     path="/api/approval-stages/{id}",
-     *     tags={"Approver Form"},
+     *     tags={"Approval Stage Form"},
      *     summary="Update an approver stage",
      *     description="Updates an approver stage using the specified ID",
      *     operationId="updateApproverStage",
