@@ -65,10 +65,10 @@ class Expense2Test extends TestCase
 
     public function test_detail()
     {
-        $response = $this->post( route('expense.detail', [
+        $response = $this->get( route('expense.detail', [
             'id'=> $this->expense->id
         ]));
-        // dump(Approvals::all());
+        dump($this->expense);
         $response->assertStatus(200);
 
         $json = $response->json('data');

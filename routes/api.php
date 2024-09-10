@@ -33,6 +33,6 @@ Route::prefix('/approval-stages')->name('approval-stages.')->group(function(){
 
 Route::prefix('/expense')->name('expense.')->group(function(){
     Route::post('/', [ExpenseController::class, 'create'])->name('create');
-    Route::post('/{id}', [ExpenseController::class, 'detail'])->name('detail');
+    Route::get('/{id}', [ExpenseController::class, 'detail'])->name('detail');
     Route::patch('/{id}/approve', [ApprovalExpenseController::class, 'approve'])->name('approve');
 });

@@ -13,6 +13,65 @@ use Illuminate\Support\Facades\DB;
 
 class ApprovalStageController extends Controller
 {
+
+    /**
+     * @OA\Post(
+     *     path="/api/approval-stages",
+     *     tags={"Approval Stage Form"},
+     *     summary="Create a new approver stage",
+     *     description="Add approver stage which uses ascending sort by ID",
+     *     operationId="addApproverStage",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"approver_id"},
+     *             @OA\Property(
+     *                 property="approver_id",
+     *                 type="integer",
+     *                 description="ID of the approver"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="status",
+     *                 type="integer",
+     *                 example=200
+     *             ),
+     *             @OA\Property(
+     *                 property="data",
+     *                 type="object",
+     *                 description="Result of the operation",
+     *                 @OA\Property(
+     *                     property="approver_id",
+     *                     type="integer",
+     *                     description="ID of the approver"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="updated_at",
+     *                     type="string",
+     *                     format="date-time",
+     *                     description="Timestamp when the record was last updated"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="created_at",
+     *                     type="string",
+     *                     format="date-time",
+     *                     description="Timestamp when the record was created"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="id",
+     *                     type="integer",
+     *                     description="Unique identifier of the approver stage"
+     *                 )
+     *             )
+     *         )
+     *     )
+     * )
+     */
     public function create(Request $request){
         $form = null;
         $data = $request->only([
@@ -51,6 +110,52 @@ class ApprovalStageController extends Controller
         ], 200);
     }
 
+    /**
+     * @OA\Put(
+     *     path="/api/approval-stages/{id}",
+     *     tags={"Approver Form"},
+     *     summary="Update an approver stage",
+     *     description="Updates an approver stage using the specified ID",
+     *     operationId="updateApproverStage",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="ID of the approver stage to update",
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"approver_id"},
+     *             @OA\Property(
+     *                 property="approver_id",
+     *                 type="integer",
+     *                 description="ID of the approver"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="status",
+     *                 type="integer",
+     *                 example=200
+     *             ),
+     *             @OA\Property(
+     *                 property="data",
+     *                 type="boolean",
+     *                 description="Result of the update operation",
+     *                 example=true
+     *             )
+     *         )
+     *     )
+     * )
+     */
     public function update(Request $request, $id){
         $form = null;
         $data = $request->only([

@@ -29,7 +29,7 @@ class ExpenseService extends ExpenseRepository{
         $data = Expense::where('id', $id)->with([
             'status',
             'approval' => function($q){
-                $q->with([
+                return $q->with([
                     'status',
                     'approver',
                 ]);

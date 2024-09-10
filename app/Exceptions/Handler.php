@@ -38,4 +38,21 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Throwable $exception)
+    {
+        // Customize the error response here
+        if ($exception instanceof \Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException) {
+            return response()->json([
+                'status' => 405,
+                'data' => [
+                    'message' => 'The specified HTTP method is not allowed for this route.',
+                    'allowed_methods' => $exception->getHeaders()['Allow'] ?? [],
+                ]
+            ], 405);
+        }
+
+        // Return the default render method if not customized
+        return parent::render($request, $exception);
+    }
 }

@@ -12,6 +12,63 @@ use Illuminate\Support\Facades\DB;
 
 class ExpenseController extends Controller
 {
+
+    /**
+     * @OA\Post(
+     *     path="/api/expense",
+     *     tags={"Expense Form"},
+     *     summary="Add Expense",
+     *     description="Add a new expense entry",
+     *     operationId="addExpense",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"amount"},
+     *             @OA\Property(
+     *                 property="amount",
+     *                 type="integer",
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="status",
+     *                 type="integer",
+     *                 example=200
+     *             ),
+     *             @OA\Property(
+     *                 property="data",
+     *                 type="object",
+     *                 @OA\Property(
+     *                     property="amount",
+     *                     type="integer"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="status_id",
+     *                     type="integer"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="updated_at",
+     *                     type="string",
+     *                     format="date-time",
+     *                 ),
+     *                 @OA\Property(
+     *                     property="created_at",
+     *                     type="string",
+     *                     format="date-time",
+     *                 ),
+     *                 @OA\Property(
+     *                     property="id",
+     *                     type="integer",
+     *                 )
+     *             )
+     *         )
+     *     )
+     * )
+     */
     public function create(Request $request){
         $data = $request->only([
             'amount'
@@ -49,6 +106,40 @@ class ExpenseController extends Controller
             'data'=> $data
         ], 200);
     }
+
+/**
+ * @OA\Get(
+ *     path="/api/expense/{id}",
+ *     tags={"Expense Form"},
+ *     summary="Get Expense Details",
+ *     description="Retrieve detailed information of a specific expense by its ID",
+ *     operationId="detailExpense",
+ *     @OA\Parameter(
+ *         name="id",
+ *         in="path",
+ *         required=true,
+ *         @OA\Schema(
+ *             type="integer"
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=200,
+ *         description="Successful operation",
+ *         @OA\JsonContent(
+ *             @OA\Property(
+ *                 property="status",
+ *                 type="integer",
+ *                 example=200
+ *             ),
+ *             @OA\Property(
+ *                 property="data",
+ *                 type="object",
+ *                 example={}
+ *             )
+ *         )
+ *     )
+ * )
+ */
 
     public function detail(Request $request, $id){
         $data = null;
