@@ -9,6 +9,46 @@ use App\Models\Expense;
 use App\Models\Approvals;
 use App\Models\Approver;
 
+/**
+ * @OA\Schema(
+ *     schema="Status",
+ *     type="object",
+ *     title="Status",
+ *     description="Status model",
+ *     @OA\Property(
+ *         property="id",
+ *         type="integer",
+ *         format="int64",
+ *         example=1,
+ *     ),
+ *     @OA\Property(
+ *         property="name",
+ *         type="string",
+ *         maxLength=100,
+ *         example="Approved",
+ *     ),
+ *     @OA\Property(
+ *         property="created_at",
+ *         type="string",
+ *         format="date-time",
+ *         nullable=true,
+ *     ),
+ *     @OA\Property(
+ *         property="updated_at",
+ *         type="string",
+ *         format="date-time",
+ *         nullable=true,
+ *     ),
+ *     @OA\Property(
+ *         property="deleted_at",
+ *         type="string",
+ *         format="date-time",
+ *         nullable=true,
+ *     )
+ * )
+ */
+
+
 class Status extends Model
 {
     use HasFactory, SoftDeletes;
