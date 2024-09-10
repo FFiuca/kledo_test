@@ -10,12 +10,14 @@ class ExpenseService extends ExpenseRepository{
     protected $approvalExpense;
 
     function __construct(
-        ApprovalExpenseRepository $approvalExpense= (new ApprovalExpenseService)
+        ApprovalExpenseRepository $approvalExpense= (new ApprovalExpenseService())
     ){
         $this->approvalExpense = $approvalExpense;
     }
 
     function add(array $data): bool|Model{
+        $data['status_id'] =1;
+
         $add = Expense::create($data);
 
         $this->approvalExpense->addBatch($add);

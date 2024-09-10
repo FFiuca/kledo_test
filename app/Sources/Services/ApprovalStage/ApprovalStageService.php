@@ -2,7 +2,7 @@
 namespace App\Sources\Services\ApprovalStage;
 
 use App\Models\ApprovalStage;
-use App\Sources\Repositories\Expense\ApprovalStageRepository;
+use App\Sources\Repositories\ApprovalStage\ApprovalStageRepository;
 use Illuminate\Database\Eloquent\Model;
 
 class ApprovalStageService extends ApprovalStageRepository{

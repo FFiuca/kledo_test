@@ -1,5 +1,5 @@
 <?php
-namespace App\Sources\Repositories\Expense;
+namespace App\Sources\Repositories\ApprovalStage;
 
 use App\Sources\Repositories\Base\AddBase;
 use App\Sources\Repositories\Base\UpdateBase;

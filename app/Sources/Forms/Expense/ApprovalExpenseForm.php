@@ -7,15 +7,17 @@ use App\Models\Approver;
 
 class ApprovalExpenseForm{
 
-    static $rule = [
-        'expense_id' => ['required'],
-        'approver_id' => [
-            'required',
-        ]
-    ];
+    private static function rule(){
+        return [
+            'expense_id' => ['required'],
+            'approver_id' => [
+                'required',
+            ]
+        ];
+    }
 
     public static function approve($data){
-        $rule = static::$rule;
+        $rule = static::rule();
 
         array_push(
             $rule['approver_id'],

@@ -14,10 +14,8 @@ class ApprovalExpenseService extends ApprovalExpenseRepository{
 
     protected $expense;
 
-    function __construct(
-        ExpenseRepository $expense = (new ExpenseService())
-    ){
-        $this->expense = $expense;
+    function __construct(){
+        $this->expense = new ExpenseService($this); // prevent circular injection
     }
 
     function approve($expenseId, $approverId): bool|Model{

@@ -6,15 +6,17 @@ use Illuminate\Validation\Rule;
 
 class ExpenseForm{
 
-    static $rule = [
-        'amount' => [
-            'required',
-            'number',
-            'min:1'
-        ]
-    ];
+    private static function rule(){
+        return [
+            'amount' => [
+                'required',
+                'numeric',
+                'min:1'
+            ]
+        ];
+    }
 
     public static function add($data){
-        return Validator::make($data, static::$rule);
+        return Validator::make($data, static::rule());
     }
 }
