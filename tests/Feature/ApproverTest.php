@@ -13,7 +13,7 @@ class ApproverTest extends TestCase
     // use RefreshDatabase;
     use DatabaseMigrations;
 
-    // protected $seeding = true;
+    // protected $seed = true;
 
     private $approver;
 

@@ -1,64 +1,51 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## How to run:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+- Pastikan anda menyiapkan database kosong untuk kebutuhan project dan telah di config di env pada variable :
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+DB_HOST=127.0.0.1 // contoh di PC saya
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+DB_PORT=3302
 
-## Laravel Sponsors
+DB_DATABASE=kledo_test
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+DB_USERNAME=root
 
-### Premium Partners
+DB_PASSWORD=admin
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+- buka terminal dengan path menuju root folder
 
-## Contributing
+-  `composer install`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+-  `php artisan migrate --seed`
 
-## Code of Conduct
+-  `php artisan serve`
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- open browser : http://127.0.0.1:8000/api/documentation
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+Perlu diketahui, saya running menggunakan :
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- PHP 8.*
+
+- MySQL 8.*
+
+
+
+*Jika terdapat masalah saat running mohon untuk menghubungi saya karena saya tau terdapat beberapa perbedaan antara PHP versi 7 dan 8 dan saya tidak hafal perbedaannya. Mohon ketersidaannya untuk menhubungi jika terjadi masalah nantinya*
+
+
+
+# Hasil Automation Test :
+![Image](https://drive.google.com/file/d/1zvSimRqijIwFfXIU21KBkkFm9JLTIzNG/view?usp=sharing)
+
+Rincian :
+- Pengujian ApproverTest bertujuan untuk memastikan bahwa penambahan data approver berfungsi dengan benar dengan mengirimkan permintaan POST ke route approver.create menggunakan nama approver yang dihasilkan oleh factory. pengujian ini memverifikasi bahwa respons HTTP memiliki status 200 dan nama approver dalam respons JSON sesuai dengan nama yang dimasukkan
+- Pengujian ApprovalStageTest dilakukan untuk memastikan fungsionalitas penambahan, penambahan dengan validasi approver yang tidak ada, dan pembaruan data pada tabel approval_stages dengan menggunakan pendekatan pengujian fitur; pengujian mencakup skenario pengiriman permintaan POST untuk menambahkan data tahap persetujuan dengan approver_id yang valid, menguji respons HTTP dengan status 200 dan memverifikasi nilai approver_id dalam respons JSON; pengujian berikutnya menguji skenario ketika approver yang diberikan tidak ada di database, memastikan respons HTTP dengan status 400; dan pengujian terakhir mengecek pembaruan data approval_stages menggunakan approver_id baru melalui permintaan PUT
+- Pengujian Expense2Test bertujuan untuk memverifikasi berbagai fungsionalitas terkait dengan model Expense. Pengujian dimulai dengan mempersiapkan data uji yang melibatkan approver, expense, dan approvals. Dalam metode test_add, pengujian dilakukan untuk menambahkan entri baru ke tabel expenses, memastikan respons HTTP status 200, serta memverifikasi bahwa amount yang dikirimkan sesuai dengan data yang diterima, dan memastikan bahwa entri baru memiliki jumlah persetujuan yang sesuai dengan jumlah approver yang dibuat serta status awal yang benar. Metode test_detail menguji endpoint detail untuk mendapatkan informasi tentang expense, memeriksa bahwa respons HTTP status 200 dikembalikan, dan memverifikasi bahwa data yang diterima mencakup amount, status, dan approval, serta memastikan bahwa approval adalah array
+- Pengujian ApprovalExpenseTest bertujuan untuk memverifikasi berbagai skenario terkait persetujuan pengeluaran. Pengujian dimulai dengan mempersiapkan data uji, termasuk approver, expense, dan approvals, dengan approver yang dibuat memiliki status awal 'menunggu'. Dalam metode test_approve_all_is_approved, diuji apakah persetujuan semua approver berhasil dan apakah status pengeluaran diperbarui menjadi 'disetujui' setelah semua persetujuan dilakukan. Metode test_approve_just_2_person_from_3_person menguji apakah persetujuan dari dua orang dari tiga orang approver tidak mengubah status pengeluaran, yang tetap 'menunggu'. Metode test_approve_just_1_person_from_3_person memeriksa apakah hanya satu persetujuan tidak mengubah status dari 'menunggu'. Akhirnya, test_approve_out_of_order menguji skenario di mana persetujuan dilakukan dengan approver yang tidak sesuai urutan dan memverifikasi bahwa status pengeluaran tetap 'menunggu' dan respons HTTP status 500 diterima.

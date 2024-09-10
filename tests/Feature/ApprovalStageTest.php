@@ -15,7 +15,7 @@ class ApprovalStageTest extends TestCase
     // use RefreshDatabase; // conflict with seeder transaction
     use DatabaseMigrations; // to prevent transaction in setup process
 
-    // protected $seeding = true;
+    // protected $seed = true;
 
     private $approver = null;
 
