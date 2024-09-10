@@ -30,6 +30,7 @@ class ApprovalExpenseService extends ApprovalExpenseRepository{
         $approve->status_id = 2;
         $approve->save();
 
+
         if($this->isApprovedByAll($expenseId))
             $this->expense->approve($expenseId);
 

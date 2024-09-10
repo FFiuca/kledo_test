@@ -11,7 +11,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ExpenseTest extends TestCase
+class Expense2Test extends TestCase
 {
     // use RefreshDatabase;
     use DatabaseMigrations;
@@ -53,10 +53,14 @@ class ExpenseTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertJsonPath('data.amount', $data['amount']);
+
+        $new = Expense::where('amount', $data['amount'])->first();
         $this->assertEquals(
-            Expense::where('amount', $data['amount'])->first()->approval()->count(),
+            $new->approval()->count(),
             $this->approver->count()
         );
+        // dump($new);
+        $this->assertEquals(1, $new->status_id); // check if status is waiting for first create
     }
 
     public function test_detail()

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApprovalExpenseController;
 use App\Http\Controllers\ApprovalStageController;
 use App\Http\Controllers\ApproverController;
 use App\Http\Controllers\ExpenseController;
@@ -33,5 +34,5 @@ Route::prefix('/approval-stages')->name('approval-stages.')->group(function(){
 Route::prefix('/expense')->name('expense.')->group(function(){
     Route::post('/', [ExpenseController::class, 'create'])->name('create');
     Route::post('/{id}', [ExpenseController::class, 'detail'])->name('detail');
-    Route::patch('/{id}/approve', [ExpenseController::class, 'create'])->name('approve');
+    Route::patch('/{id}/approve', [ApprovalExpenseController::class, 'approve'])->name('approve');
 });

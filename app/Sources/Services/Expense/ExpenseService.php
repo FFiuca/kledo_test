@@ -16,7 +16,7 @@ class ExpenseService extends ExpenseRepository{
     }
 
     function add(array $data): bool|Model{
-        $data['status_id'] =1;
+        $data['status_id'] = 1;
 
         $add = Expense::create($data);
 
@@ -40,7 +40,7 @@ class ExpenseService extends ExpenseRepository{
     }
 
     function approve($id): bool{
-        $approve = Expense::where('expense_id', $id)->update(['status_id'=> 2]);
+        $approve = Expense::where('id', $id)->update(['status_id'=> 2]);
 
         return $approve;
     }
